@@ -39,7 +39,7 @@ public class Comment {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name="created_at")
     @JsonFormat(pattern = "dd-MM-yyyy")
-    private Date createdAt;
+    private Date createAt;
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
@@ -88,12 +88,12 @@ public class Comment {
         this.vote = vote;
     }
 
-    public Date getCreatedAt() {
-        return createdAt;
+    public Date getCreateAt() {
+        return createAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
+    public void setCreateAt(Date createdAt) {
+        this.createAt = createdAt;
     }
 
     public Customer getCustomer() {
@@ -120,13 +120,13 @@ public class Comment {
         this.product = product;
     }
 
-    public Comment(int id, String commentDetail, String commentName, int vote, Date createdAt, Customer customer,
+    public Comment(int id, String commentDetail, String commentName, int vote, Date createAt, Customer customer,
             List<Reply> reply, Product product) {
         this.id = id;
         this.commentDetail = commentDetail;
         this.commentName = commentName;
         this.vote = vote;
-        this.createdAt = createdAt;
+        this.createAt = createAt;
         this.customer = customer;
         this.reply = reply;
         this.product = product;

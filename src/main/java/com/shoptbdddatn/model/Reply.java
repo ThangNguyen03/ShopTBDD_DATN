@@ -2,7 +2,6 @@ package com.shoptbdddatn.model;
 
 import java.util.Date;
 
-import javax.annotation.Generated;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,6 +14,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "replies")
@@ -37,6 +37,7 @@ public class Reply {
 
     @ManyToOne
     @JoinColumn(name = "comment_id")
+    @JsonIgnore
     private Comment comment;
 
     public int getId() {
