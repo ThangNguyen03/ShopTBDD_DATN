@@ -33,13 +33,13 @@ public class Comment {
     @Column(name="comment_name",length =50)
     private String commentName;
 
-    @Column(name="vote")
-    private int vote;
-
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name="created_at")
     @JsonFormat(pattern = "dd-MM-yyyy")
     private Date createAt;
+
+    @Column(name="vote")
+    private int vote;
 
     @ManyToOne
     @JoinColumn(name = "customer_id")

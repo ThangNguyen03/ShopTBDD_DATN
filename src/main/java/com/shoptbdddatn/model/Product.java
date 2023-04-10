@@ -129,8 +129,8 @@ public class Product {
     public Product(int id,
             @NotEmpty(message = "Nhập mã sản phẩm") @Size(min = 2, message = "Mã sản phẩm tối thiểu 2 ký tự") String productCode,
             String productName, String productDescription, String productVendor, int quantityInStock,
-            @Digits(integer = 8, fraction = 2) BigDecimal byPrice, ProductLine productLine,
-            List<OrderDetail> orderDetails) {
+            @Digits(integer = 8, fraction = 2) BigDecimal byPrice, ProductLine productLine) {
+        super();
         this.id = id;
         this.productCode = productCode;
         this.productName = productName;
@@ -139,7 +139,6 @@ public class Product {
         this.quantityInStock = quantityInStock;
         this.byPrice = byPrice;
         this.productLine = productLine;
-        this.orderDetails = orderDetails;
     }
 
     public Product() {
