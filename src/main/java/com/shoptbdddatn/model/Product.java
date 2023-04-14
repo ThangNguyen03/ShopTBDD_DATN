@@ -44,7 +44,7 @@ public class Product {
 
     @Column(name = "buy_price")
 	@Digits(integer=8, fraction=2)
-    private BigDecimal byPrice;
+    private BigDecimal buyPrice;
 
     @ManyToOne
 	@JoinColumn(name = "product_line_id")
@@ -102,12 +102,12 @@ public class Product {
         this.quantityInStock = quantityInStock;
     }
 
-    public BigDecimal getByPrice() {
-        return byPrice;
+    public BigDecimal getBuyPrice() {
+        return buyPrice;
     }
 
-    public void setByPrice(BigDecimal byPrice) {
-        this.byPrice = byPrice;
+    public void setBuyPrice(BigDecimal buyPrice) {
+        this.buyPrice = buyPrice;
     }
 
     public ProductLine getProductLine() {
@@ -129,7 +129,7 @@ public class Product {
     public Product(int id,
             @NotEmpty(message = "Nhập mã sản phẩm") @Size(min = 2, message = "Mã sản phẩm tối thiểu 2 ký tự") String productCode,
             String productName, String productDescription, String productVendor, int quantityInStock,
-            @Digits(integer = 8, fraction = 2) BigDecimal byPrice, ProductLine productLine) {
+            @Digits(integer = 8, fraction = 2) BigDecimal buyPrice, ProductLine productLine) {
         super();
         this.id = id;
         this.productCode = productCode;
@@ -137,7 +137,7 @@ public class Product {
         this.productDescription = productDescription;
         this.productVendor = productVendor;
         this.quantityInStock = quantityInStock;
-        this.byPrice = byPrice;
+        this.buyPrice = buyPrice;
         this.productLine = productLine;
     }
 
