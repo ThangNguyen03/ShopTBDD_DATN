@@ -1,10 +1,12 @@
 package com.shoptbdddatn.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.shoptbdddatn.model.Token;
 import com.shoptbdddatn.repository.TokenRepository;
 
+@Service
 public class TokenServiceImp implements TokenService {
 
     @Autowired

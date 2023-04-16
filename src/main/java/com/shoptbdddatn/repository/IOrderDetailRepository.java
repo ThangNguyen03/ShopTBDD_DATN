@@ -13,7 +13,7 @@ public interface IOrderDetailRepository extends JpaRepository<OrderDetail, Integ
   ArrayList<ITopSellProduct>getTopSellProducts();
 
   @Query(value = "SELECT od.id, product_id, product_code, product_name, price_each, quantity_order FROM order_details od INNER JOIN products p ON od.product_id = p.id WHERE order_id LIKE :orderId", nativeQuery = true)
-  ArrayList<IGetOrderDetailByOrderId>getOrderDetailByOrderIds();
+  ArrayList<IGetOrderDetailByOrderId>getOrderDetailByOrderIds(@Param(value = "orderId") int orderId);
 
   @Query(value = "SELECT o.check_number, p.id AS productId, p.product_code, p.product_name, p.buy_price, od.quantity_order, o.order_date, o.status, o.ammount\r\n"
 			+ "FROM order_details od\r\n"
