@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>ShopTBDD_K-Emart</title>
+    <title>Cart</title>
 
     <!-- Google Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet'
@@ -45,7 +46,8 @@
                                     <div class="dropdown-menu" aria-labelledby="userInfo">
                                         <a class="btn dropdown-item" id="logoutBtn"><i class="fas fa-sign-out-alt"></i>
                                             Đăng xuất</a>
-                                        <a class="btn dropdown-item" href="" id="profileCustomer"><i class="far fa-id-card"></i>
+                                        <a class="btn dropdown-item" href="" id="profileCustomer"><i
+                                                class="far fa-id-card"></i>
                                             Profile</a>
                                         <a class="btn dropdown-item" href="" id="orderCustomer"><i
                                                 class="fas fa-clipboard-list"></i> Đơn hàng</a>
@@ -56,9 +58,10 @@
                                         class="fa fa-user"></i>Đăng nhập</a></li>
                             <li>
                                 <div id="adminPage" style="display: none;">
-                                    <a class="btn" href="admin-dashboard.html"><i class="fas fa-cog"></i>Quản lý cửa hàng</a>
+                                    <a class="btn" href="admin-dashboard.html"><i class="fas fa-cog"></i>Quản lý cửa
+                                        hàng</a>
                                 </div>
-                            </li>    
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -98,9 +101,9 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="index.html">Trang chủ</a></li>
+                        <li><a href="index.html">Trang chủ</a></li>
                         <li><a href="shop.html">Sản phẩm</a></li>
-                        <li><a href="cart.html">Giỏ hàng</a></li>
+                        <li class="active"><a href="cart.html">Giỏ hàng</a></li>
                         <li><a href="checkout.html">Thanh toán</a></li>
                         <li><a href="order-tracking.html">Theo dõi đơn hàng</a></li>
                     </ul>
@@ -109,124 +112,79 @@
         </div>
     </div> <!-- End mainmenu area -->
 
-    <div class="slider-area">
-        <!-- Slider -->
-        <div class="block-slider block-slider4">
-            <ul class="" id="bxslider-home4">
-                <li>
-                    <img src="img/slide1.png" alt="Slide">
-                    <div class="caption-group">
-                        <h2 class="caption title">
-                            Samsung Galaxy Z Fold2 <span class="primary"><strong>5G</strong></span>
-                        </h2>
-                        <h4 class="caption subtitle">(Summer 2021 Edition)</h4>
-                        <a class="caption button-radius" href="single-product.html?id=1"><span class="icon"></span>Mua
-                            ngay</a>
-                    </div>
-                </li>
-                <li><img src="img/slide2.jpg" alt="Slide">
-                    <div class="caption-group">
-                        <h2 class="caption title">
-                            IPhone 12 Pro Max <span class="primary"><strong>512GB</strong></span>
-                        </h2>
-                        <h4 class="caption subtitle">đủ 4 màu</h4>
-                        <a class="caption button-radius" href="single-product.html?id=4"><span class="icon"></span>Mua
-                            ngay</a>
-                    </div>
-                </li>
-                <li><img src="img/slide3.jpg" alt="Slide">
-                    <div class="caption-group">
-                        <h2 class="caption title">
-                            IPad Pro 11 Inch 2021 <span class="primary"><strong>(M1)</strong></span>
-                        </h2>
-                        <h4 class="caption subtitle">512Gb (Wifi+5G)</h4>
-                        <a class="caption button-radius" href="single-product.html?id=11"><span class="icon"></span>Mua
-                            ngay</a>
-                    </div>
-                </li>
-                <li><img src="img/slide4.jpg" alt="Slide">
-                    <div class="caption-group">
-                        <h2 class="caption title">
-                            MacBook Pro 2020 <span class="primary"><strong>(M1)</strong></span>
-                        </h2>
-                        <h4 class="caption subtitle">13 Inch Silver 16GB/256GB</h4>
-                        <a class="caption button-radius" href="single-product.html?id=13"><span class="icon"></span>Mua
-                            ngay</a>
-                    </div>
-                </li>
-            </ul>
-        </div>
-        <!-- ./Slider -->
-    </div> <!-- End slider area -->
-
-    <div class="promo-area">
-        <div class="zigzag-bottom"></div>
+    <div class="product-big-title-area">
         <div class="container">
             <div class="row">
-                <div class="col-md-3 col-sm-6">
-                    <div class="single-promo promo1">
-                        <i class="fa fa-refresh"></i>
-                        <p>30 ngày đổi trả</p>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="single-promo promo2">
-                        <i class="fa fa-truck"></i>
-                        <p>Miễn phí ship</p>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="single-promo promo3">
-                        <i class="fa fa-lock"></i>
-                        <p>Thanh toán linh hoạt</p>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="single-promo promo4">
-                        <i class="fa fa-gift"></i>
-                        <p>Sản phẩm cập nhật</p>
+                <div class="col-md-12">
+                    <div class="product-bit-title text-center">
+                        <h2>Giỏ hàng</h2>
                     </div>
                 </div>
             </div>
         </div>
-    </div> <!-- End promo area -->
+    </div> <!-- End Page title area -->
 
-    <div class="maincontent-area">
+
+    <div class="single-product-area">
         <div class="zigzag-bottom"></div>
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="latest-product" id="topSellProductCarousel">
-                        <!--Load top sell products-->
+                    <div class="product-content-right">
+                        <div class="woocommerce">
+                            <form method="post" action="#">
+                                <table cellspacing="0" class="shop_table cart" id="cartContent">
+                                    <thead>
+                                        <tr>
+                                            <th class="product-remove">&nbsp;</th>
+                                            <th class="product-thumbnail">Hình ảnh</th>
+                                            <th class="product-name">Sản phẩm</th>
+                                            <th class="product-price">Giá tiền</th>
+                                            <th class="product-quantity">Số lượng</th>
+                                            <th class="product-subtotal">Tổng</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
 
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> <!-- End best seller product content area -->
+                                    </tbody>
+                                </table>
+
+                                <div class="cart_totals">
+                                    <table cellspacing="0">
+                                        <tbody>
+                                            <tr class="cart-subtotal text-center" style="font-size: large;">
+                                                <th>Tổng giá sản phẩm</th>
+                                                <td><span class="amount" id="cartTotal"></span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <table cellspacing="0" class="shop_table cart">
+                                    <tr>
+                                        <td class="actions" colspan="6">
+                                            <div class="coupon">
+                                                <label for="coupon_code">Mã giảm giá:</label>
+                                                <input type="text" placeholder="Điền mã giảm giá" value=""
+                                                    id="coupon_code" class="input-text" name="coupon_code">
+                                                <a name="apply_coupon" class="button-process">Áp dụng</a>
+                                            </div>
+                                            <a name="update_cart" class="button-process">Cập nhật giỏ</a>
+                                            <a name="proceed" href="checkout.html" class="button-process">Thanh toán</a>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </form>
 
 
-    <div class="brands-area">
-        <div class="zigzag-bottom"></div>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="brand-wrapper">
-                        <div class="brand-list">
-                            <img src="img/brand1.png" alt="">
-                            <img src="img/brand2.png" alt="">
-                            <img src="img/brand3.png" alt="">
-                            <img src="img/brand4.png" alt="">
-                            <img src="img/brand5.png" alt="">
-                            <img src="img/brand6.png" alt="">
-                            <img src="img/brand1.png" alt="">
-                            <img src="img/brand2.png" alt="">
+
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div> <!-- End brands area -->
+    </div>
+
 
     <div class="footer-top-area">
         <div class="zigzag-bottom"></div>
@@ -298,7 +256,8 @@
     </div> <!-- End footer bottom area -->
 
     <!-- Latest jQuery form server -->
-    <script src="https://code.jquery.com/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 
     <!-- Bootstrap JS form CDN -->
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
@@ -310,24 +269,18 @@
     <!-- jQuery easing -->
     <script src="js/jquery.easing.1.3.min.js"></script>
 
-    <!-- Main Script -->
-    <script src="js/main.js"></script>
-
     <!-- Show product number in cart -->
     <script src="js/display.item.num.cart.js"></script>
-
-    <!--Index page javascript-->
-    <script src="js/index.js"></script>
-
-    <!--Authentication-->
-    <script src="js/shop-auth.js"></script>
 
     <!-- Toastr -->
     <script src="plugins/toastr/toastr.min.js"></script>
 
-    <!-- Slider -->
-    <script type="text/javascript" src="js/bxslider.min.js"></script>
-    <script type="text/javascript" src="js/script.slider.js"></script>
+    <!-- Main Script -->
+    <script src="js/main.js"></script>
+    <script src="js/cart.js"></script>
+
+    <!--Authentication-->
+    <script src="js/shop-auth.js"></script>
 </body>
 
 </html>
