@@ -7,9 +7,6 @@ import com.shoptbdddatn.model.User;
 import com.shoptbdddatn.repository.UserRepository;
 import com.shoptbdddatn.security.UserPrincipal;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import java.util.HashSet;
 import java.util.Set;
 

@@ -17,15 +17,19 @@ import java.util.Date;
 public class JwtUtil {
     private static Logger logger = LoggerFactory.getLogger(JwtUtil.class);
     private static final String USER = "user";
+    //signature
     private static final String SECRET = "cainaychinhlachukycuabandungdelorangoai";
 
+    // tao mot JWT bằng thuật toán hs256 và khóa secret
     public String generateToken(UserPrincipal user) {
         String token = null;
         try {
+            //payload
             JWTClaimsSet.Builder builder = new JWTClaimsSet.Builder();
             builder.claim(USER, user);
             builder.expirationTime(generateExpirationDate());
             JWTClaimsSet claimsSet = builder.build();
+            //header
             SignedJWT signedJWT = new SignedJWT(new JWSHeader(JWSAlgorithm.HS256), claimsSet);
             JWSSigner signer = new MACSigner(SECRET.getBytes());
             signedJWT.sign(signer);
@@ -36,10 +40,12 @@ public class JwtUtil {
         return token;
     }
 
+    //hạn jwt là sau 10 ngày
     public Date generateExpirationDate() {
         return new Date(System.currentTimeMillis() + 864000000);
     }
 
+    // giải ma chuoi jwt
     private JWTClaimsSet getClaimsFromToken(String token) {
         JWTClaimsSet claims = null;
         try {
@@ -53,7 +59,7 @@ public class JwtUtil {
         }
         return claims;
     }
-
+    //kiểm tra jwt hết hạn chưa nếu hết hạn đăng nhập lại 
     public UserPrincipal getUserFromToken(String token) {
         UserPrincipal user = null;
         try {
@@ -67,7 +73,7 @@ public class JwtUtil {
         }
         return user;
     }
-
+    // so sanh thời gian hiện tại và thời gian hết hạn của jwt
     private Date getExpirationDateFromToken(JWTClaimsSet claims) {
         return claims != null ? claims.getExpirationTime() : new Date();
     }
