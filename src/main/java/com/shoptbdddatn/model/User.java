@@ -73,6 +73,7 @@ public class User extends BaseEntity {
         this.roles = roles;
     }
 
+    //Them contructor method
     public User() {
         super();
     }
