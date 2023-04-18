@@ -1,11 +1,17 @@
 package com.shoptbdddatn.model;
 
 import javax.persistence.*;
+
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "t_user")
+@Getter
+@Setter
 public class User extends BaseEntity {
     private String firstname;
 	
@@ -65,6 +71,10 @@ public class User extends BaseEntity {
         this.username = username;
         this.password = password;
         this.roles = roles;
+    }
+
+    public User() {
+        super();
     }
     
 }

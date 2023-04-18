@@ -18,7 +18,7 @@ public class JwtUtil {
     private static Logger logger = LoggerFactory.getLogger(JwtUtil.class);
     private static final String USER = "user";
     //signature
-    private static final String SECRET = "cainaychinhlachukycuabandungdelorangoai";
+    private static final String SECRET = "daycaidaynaychinhlachukycuabandungdelorangoaidaynhenguyhiemchetnguoidayhihihi";
 
     // tao mot JWT bằng thuật toán hs256 và khóa secret
     public String generateToken(UserPrincipal user) {
