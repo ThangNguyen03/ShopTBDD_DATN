@@ -193,9 +193,16 @@ $(document).ready(function () {
 
     //action create reply button
     $("#replyBtn").on("click", function (event) {
-        event.preventDefault();
-        var vCommentId = $("#commentIdInfo").val();
-        createReplyByCommentId(vCommentId);
+        var replyInput = $("#replyInput");
+  if ($.trim(replyInput.val()) === '') {
+    window.alert("Vui lòng nhập nội dung trả lời trước khi gửi!");
+    return false;
+  }else{
+    event.preventDefault();
+    var vCommentId = $("#commentIdInfo").val();
+    createReplyByCommentId(vCommentId);
+  }
+       
     })
 
     //action delete reply button

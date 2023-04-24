@@ -34,7 +34,7 @@ public class PaymentController {
 		return paymentRepository.findAll();
 	}
 	
-    //Sua danh sach thanh toan
+    //tao danh sach thanh toan
 	@PostMapping("/payment/create/{orderId}")
 	public ResponseEntity<Object> createOrderDetail(
 			@PathVariable("orderId") int orderId,

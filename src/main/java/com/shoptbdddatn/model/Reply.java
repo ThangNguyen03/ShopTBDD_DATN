@@ -31,9 +31,9 @@ public class Reply {
     private String replyName;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "created_at")
+    @Column(name = "create_at")
     @JsonFormat(pattern = "dd-MM-yyyy")
-    private Date createdAt;
+    private Date createAt;
 
     @ManyToOne
     @JoinColumn(name = "comment_id")
@@ -64,12 +64,12 @@ public class Reply {
         this.replyName = replyName;
     }
 
-    public Date getCreatedAt() {
-        return createdAt;
+    public Date getCreateAt() {
+        return createAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
+    public void setCreateAt(Date createAt) {
+        this.createAt = createAt;
     }
 
     public Comment getComment() {
@@ -80,11 +80,11 @@ public class Reply {
         this.comment = comment;
     }
 
-    public Reply(int id, String replyDetail, String replyName, Date createdAt, Comment comment) {
+    public Reply(int id, String replyDetail, String replyName, Date createAt, Comment comment) {
         this.id = id;
         this.replyDetail = replyDetail;
         this.replyName = replyName;
-        this.createdAt = createdAt;
+        this.createAt = createAt;
         this.comment = comment;
     }
 

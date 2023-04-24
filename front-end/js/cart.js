@@ -2,20 +2,20 @@ $(document).ready(function () {
     showItemLSToCart();
     showTotalPrice();
 
-    // get contents from local storage.
+    // lấy nội dung từ bộ nhớ cục bộ
     function getLSContent() {
 
-        // if nothing is there, create an empty array
+        // nếu không có gì thì tạo mảng trống
         const vLSContent = JSON.parse(localStorage.getItem("products"));
         return vLSContent;
     }
 
-    // save content inside local storage
+    // lưu nội dung bên trong bộ nhớ cục bộ
     function setLSContent(pLSContent) {
         localStorage.setItem("products", JSON.stringify(pLSContent));
     }
 
-    //show item from local storage to cart
+    //hiển thị sản phẩm từ bộ nhớ cục bộ vào giỏ hàng
     function showItemLSToCart() {
         var vLSContent = getLSContent();
         $("#cartContent > tbody").text("");
@@ -55,7 +55,7 @@ $(document).ready(function () {
                 $("#cartContent").append(bProductMarkup);
             }
         } else {
-            // if no content is in local storage, alert user
+            // nếu không có nội dung nào trong bộ nhớ cục bộ sẽ thông báo cho người dùng
             bProductMarkup = `<tr class="cart_item">
                                 <td colspan="6"><p style="font-size: 20px">Chưa có sản phẩm trong giỏ hàng</p></td>
                             </tr>`;
@@ -63,34 +63,35 @@ $(document).ready(function () {
         }
     }
 
-    //Show total price
+    //  hiển thị tổng tiền
     function showTotalPrice() {
         console.log("Tổng giá tiền là: ");
         var sum = 0;
-        // iterate through each td based on class and add the values
+        // lặp qua từng td dựa trên lớp và thêm các giá trị
         $(".product-subtotal").each(function () {
 
             //convert string sang float và * thêm 1.000.000 để quy ra số tiền
             var value = parseFloat($(this).text()) * 1000000.00;
             console.log(value)
-            // add only if the value is number
+            // chỉ thêm nếu giá trị là số
             if (!isNaN(value) && value.length != 0) {
                 sum += parseFloat(value);
             }
         });
         $("#cartTotal").text(sum.toLocaleString('vi', { style: 'currency', currency: 'VND' }));
+        $(".cart-amunt").text($("#cartTotal").text());
 
     }
 
     //Hàm xoá sản phẩm khỏi giỏ hàng
     function removeProduct(pProductId) {
-        // remove product from cart (and from local storage)
+        // xóa sản phẩm khỏi giỏ hàng (và khỏi bộ nhớ cục bộ)
 
-        // retrieve list of products from LS
+        //lấy danh sách sản phẩm từ LS
         var vLSContent = getLSContent();
 
-        // get the index of the product item to remove
-        // inside the local storage content array
+        // lấy chỉ mục của mặt hàng sản phẩm để loại bỏ
+         // bên trong mảng nội dung lưu trữ cục bộ
         let vProductIndex;
         vLSContent.forEach(function (product, i) {
             if (product.id === pProductId) {
@@ -98,24 +99,24 @@ $(document).ready(function () {
             }
         });
 
-        // modify the items in local storage array
-        // to remove the selected product item
+       // sửa đổi các mục trong mảng lưu trữ cục bộ
+         // để xóa mục sản phẩm đã chọn
 
         vLSContent.splice(vProductIndex, 1);
-        // update local storage content
+        // cập nhật nội dung lưu trữ cục bộ
         setLSContent(vLSContent);
         showItemLSToCart();
     }
 
     //Hàm tăng số lượng sản phẩm trong giỏ
     function increaseQtyProduct(productId) {
-        // remove product from cart (and from local storage)
+       // xóa sản phẩm khỏi giỏ hàng (và khỏi bộ nhớ cục bộ)
 
-        // retrieve list of products from LS
+         // lấy danh sách sản phẩm từ LS
         var lsContent = getLSContent();
 
-        // get the index of the product item to remove
-        // inside the local storage content array
+       // lấy chỉ số của sản phẩm cần loại bỏ
+         // bên trong mảng nội dung lưu trữ cục bộ
         let productIndex;
         lsContent.forEach(function (product, i) {
             if (product.id === productId) {
@@ -131,13 +132,7 @@ $(document).ready(function () {
 
     //Hàm giảm số lượng sản phẩm trong giỏ
     function decreaseQtyProduct(productId) {
-        // remove product from cart (and from local storage)
-
-        // retrieve list of products from LS
         var lsContent = getLSContent();
-
-        // get the index of the product item to remove
-        // inside the local storage content array
         let productIndex;
         lsContent.forEach(function (product, i) {
             if (product.id === productId) {

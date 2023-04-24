@@ -87,6 +87,34 @@ $(document).ready(function () {
 
     }
 
+let cartTotal = 0;
+
+function addProductToCart(product) {
+  // ... code to add product to cart ...
+
+  // update cart total
+  let price = parseFloat(product.data('product_price'));
+  cartTotal += price;
+
+  // update cart amount
+  $(".cart-amunt").text(cartTotal.toLocaleString('vi', { style: 'currency', currency: 'VND' }));
+
+  // update product count
+  var productCount = parseInt($('.product-count').text());
+$('.product-count').text(productCount + 1);
+
+  // show success message
+  // ... code to show success message ...
+}
+
+// add event listener for addProductBtn
+$(document).on("click", "#addProductBtn", function(event) {
+  event.preventDefault();
+  let product = $(this);
+  addProductToCart(product);
+});
+
+
     $("#all-products").on("click", "#addProductBtn", function (event) {
         event.preventDefault();
         var vProduct = {

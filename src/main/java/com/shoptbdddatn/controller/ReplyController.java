@@ -38,7 +38,7 @@ public class ReplyController {
 				Reply newReply = new Reply();
 				newReply.setReplyDetail(reply.getReplyDetail());
 				newReply.setReplyName(reply.getReplyName());
-				newReply.setCreatedAt(reply.getCreatedAt());
+				newReply.setCreateAt(reply.getCreateAt());
 				newReply.setComment(commentData.get());
 				
 				Reply createReply = replyRepository.save(newReply);

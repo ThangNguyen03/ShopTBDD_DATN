@@ -9,7 +9,11 @@ $(document).ready(function () {
             { "data": "id" },
             { "data": "productCode" },
             { "data": "productName" },
-            { "data": "productDescription" },
+            { "data": "productDescription", 
+            "render": function(data, type, row) {
+                return data.replace(/\n/g, '<br>');
+            }
+            },
             { "data": "productVendor" },
             { "data": "quantityInStock" },
             { "data": "buyPrice" },
@@ -88,7 +92,7 @@ $(document).ready(function () {
 
     })
 
-    //show product info
+    //Hien thi thong tin san pham
     function showProductToModal(paramProduct) {
 
         if (paramProduct != null) {
@@ -128,7 +132,7 @@ $(document).ready(function () {
         }
     }
 
-    //show product line to selector
+    //Hien thi danh muc san pham
     function showProductLineSelect() {
         $.ajax({
             url: "http://localhost:8080/productLine/all",
@@ -141,7 +145,7 @@ $(document).ready(function () {
                     text: "Chọn loại sản phẩm"
                 }).appendTo($("#productLineSelect"))
 
-                //load product line to select box
+                //load danh muc san pham trong select box
                 for (i = 0; i < paramProductLineRes.length; i++) {
                     var bProductLineOption = $("<option/>");
                     bProductLineOption.prop("value", paramProductLineRes[i].id);
@@ -155,7 +159,7 @@ $(document).ready(function () {
         })
     }
 
-    //clear modal info before show
+    //don sach thong tin truoc khi hien thi
     function clearModalInfo() {
         $("#productIdInfo").val("");
         $("#productCodeInfo").val("");
@@ -166,7 +170,7 @@ $(document).ready(function () {
         $("#productQtyStockInfo").val("");
     }
 
-    //get product info from input modal
+    //Lay thong tin san pham tu phuong thuc nhap lieu
     function getProductModal() {
         if (gActionBtn == "Sửa") {
             var vProductInfoInput = {
@@ -311,7 +315,7 @@ $(document).ready(function () {
 
     })
 
-    //validate modal input
+    //xac thuc dau vao
     function validateDatInput() {
         var checkValue = true;
         var vProductInfoInput = {

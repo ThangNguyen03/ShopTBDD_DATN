@@ -9,9 +9,9 @@ $(document).ready(function () {
         return lsContent;
     }
 
-    //show item in cart
+    //hiển thị mặt hàng trong giỏ hàng
     function showItemLSToCart() {
-        // get contents from local storage
+        // lấy nội dung từ bộ nhớ cục bộ
         var lsContent = getLSContent();
         $("#productItem > tbody").text("");
         if (lsContent !== null) {
@@ -26,7 +26,7 @@ $(document).ready(function () {
                 $("#productItem").append(productMarkup);
             }
         } else {
-            // if no content is in local storage, alert user
+            // nếu không có nội dung nào trong bộ nhớ cục bộ sẽ thông báo cho người dùng
             productMarkup = "Your cart is empty.";
         }
 
@@ -166,6 +166,7 @@ $(document).ready(function () {
                 createOrderDetailByOrderId(paramOrderRes);
                 showConfirmOrder(pCustomerId, paramOrderRes.checkNumber);
                 clearInputCustomer();
+                localStorage.clear();
             },
             error: function (ajaxContext) {
                 //alert(ajaxContext.responseText);
@@ -197,7 +198,7 @@ $(document).ready(function () {
     }
 
 
-    //show modal confirm đơn hàng
+    //hiển thị phương thức xác nhận đơn hàng
     function showConfirmOrder(paramCustomerId, paramOrderNumber) {
         $("#confirmOrder").modal("show");
         var lsContent = getLSContent();
@@ -219,7 +220,7 @@ $(document).ready(function () {
                 $("#itemInCart").append(productMarkup);
             }
         } else {
-            // if no content is in local storage, alert user
+            // nếu không có nội dung nào trong bộ nhớ cục bộ sẽ thông báo cho người dùng
             productMarkup = "Your cart is empty.";
         }
 
@@ -246,10 +247,28 @@ $(document).ready(function () {
 
 
     $("#checkoutBtn").on("click", function (event) {
-        event.preventDefault();
-        var vCustomerInput = getCustomerInputData();
-        //("#toastError").toast("show");
-        checkCustomerByPhoneNumber(vCustomerInput.phoneNumber);
+        var hasError = false;
+        $(".validate-required input").each(function() {
+            if ($.trim($(this).val()) === '') {
+                hasError = true;
+                $(this).parent().addClass('woocommerce-invalid');
+            } else {
+                $(this).parent().removeClass('woocommerce-invalid');
+            }
+        });
+
+        if (hasError) {
+            event.preventDefault();
+            alert("Vui lòng điền đầy đủ thông tin trước khi thanh toán!");
+        }
+        if(hasError==false){
+            event.preventDefault();
+            var vCustomerInput = getCustomerInputData();
+            //("#toastError").toast("show");
+            checkCustomerByPhoneNumber(vCustomerInput.phoneNumber);
+           
+        }
+      
     });
 
 })

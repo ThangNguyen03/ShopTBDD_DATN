@@ -14,11 +14,11 @@ $(document).ready(function () {
     var gVote = 0;
     var gUserRole = "";
 
-    //on page load
+    //load trang
     getProductInfoById();
     getAllComment();
 
-    //get product info by id
+    //lay thong tin san pham qua id
     function getProductInfoById() {
 
         $.ajax({
@@ -38,12 +38,18 @@ $(document).ready(function () {
         })
     }
 
-    //load product data
+    //load du lieu san pham
     function loadProductData(pProductObj) {
         vImgUrl = "img/" + pProductObj.productCode + ".jpg";
         $(".product-name").text(pProductObj.productName);
         $(".product-inner-price > ins").text((pProductObj.buyPrice).toLocaleString('vi', { style: 'currency', currency: 'VND' }));
-        $("#productDescription").text(pProductObj.productDescription);
+        var descriptionLines = pProductObj.productDescription.split('\n'); // tách dòng
+        var formattedDescription = '';
+        for (var i = 0; i < descriptionLines.length; i++) {
+          formattedDescription += descriptionLines[i] + '<br>'; // Nối dòng
+        }
+        $("#productDescription").html(formattedDescription);
+
         $("#imgProduct").attr("src", vImgUrl);
     }
 
@@ -66,19 +72,19 @@ $(document).ready(function () {
     });
 
     function getLSContent() {
-        // get contents from local storage.
-        // if nothing is there, create an empty array
+        // lay noi dung tu bo nho cuc bo
+        // neu khong co thi tao mang trong
         const lsContent = JSON.parse(localStorage.getItem("products")) || [];
         return lsContent;
     }
 
     function setLSContent(lsContent) {
-        // save content inside local storage
+        // luu noi dung trong bo nho cuc bo
         localStorage.setItem("products", JSON.stringify(lsContent));
     }
 
     function saveProduct(paramPorductObj) {
-        // save selected product in local storage and display it in the cart together
+        // lưu sản phẩm đã chọn vào bộ nhớ cục bộ và hiển thị sản phẩm đó trong giỏ hàng
 
         // vars
         var vProductId = paramPorductObj.id;
@@ -88,21 +94,19 @@ $(document).ready(function () {
         var vProductCode = paramPorductObj.code;
         let isProductInCart = false;
 
-        // get local storage array
+        // lay mang luu tru cuc bo
         const lsContent = getLSContent();
 
-        // to avoid user adds the same course twice, check
-        // the product is not in LS already before adding it
+       // để tránh người dùng thêm cùng một khóa học hai lần, hãy kiểm tra
+         // sản phẩm chưa có trong LS trước khi thêm nó
         lsContent.forEach(function (product) {
             if (product.id === vProductId) {
                 isProductInCart = true;
                 callToast("info", "Sản phẩm đã có trong giỏ");
             }
         });
-
-        // only if the product is not already in the cart,
-        // create an object representing selected product info
-        // and push it into local storage array
+         // tạo một đối tượng đại diện cho thông tin sản phẩm đã chọn
+         // và đẩy nó vào mảng lưu trữ cục bộ chỉ khi sản phẩm chưa có trong giỏ hàng
         if (!isProductInCart) {
             lsContent.push({
                 id: vProductId,
@@ -112,7 +116,7 @@ $(document).ready(function () {
                 price: vProductPrice
             });
 
-            // add product into into local storage
+            // thêm sản phẩm vào bộ nhớ cục bộ
             setLSContent(lsContent);
             callToast("success", "Đã thêm sản phẩm vào giỏ");
         }
@@ -144,7 +148,7 @@ $(document).ready(function () {
 
 
 
-    //get all comment by productId
+    //lay tat ca binh luan qua id san pham
     function getAllComment() {
         getUserRole();
         $.ajax({
@@ -160,7 +164,7 @@ $(document).ready(function () {
         })
     }
 
-    //show all comment to comment area
+    //hien thi binh luạn vao textare
     function showAllCommnent(pComments) {
         $("#commentSection > ul").text("");
         for (i = 0; i < pComments.length; i++) {
@@ -221,7 +225,7 @@ $(document).ready(function () {
 
     }
 
-    //check customer bought product?
+    //kiem tra khach hang da mua san pham chua
     function checkCustomerBuy() {
         var vUserEmail = $("#userInfo").text();
         $.ajax({
@@ -239,7 +243,7 @@ $(document).ready(function () {
         })
     }
 
-    //set vote by star click
+    //dan vote bang click sao 
     $("#star1").on("click", function () {
         gVote = 1;
         checkCustomerBuy();
@@ -307,13 +311,13 @@ $(document).ready(function () {
         $("#star5").removeClass("checked");
     }
 
-    //action comment button
+    //hoat dong button binh luanj
     $("#commentBtn").on("click", function () {
         var vCommentInput = $("#commentInput").val().trim();
         addCustomerComment(vCommentInput)
     })
 
-    //call create comment API
+    //goi api tao commnet
     function addCustomerComment(pComment) {
         var vCheckUserLogin = validateUserLogin();
         var vUserEmail = $("#userInfo").text();
@@ -344,7 +348,7 @@ $(document).ready(function () {
         }
     }
 
-    //validate user login
+    //  kiem tra nguoi dung dang nhap
     function validateUserLogin() {
         var vUserEmail = $("#userInfo").text();
         var vCheckUserLogin = true;
@@ -355,7 +359,7 @@ $(document).ready(function () {
         return vCheckUserLogin;
     }
 
-    //action add reply button for each comment
+    //hoa dong them phan hoi vao moi binh luan
     $(".comments-list").on("click", ".addReplyBtn", function () {
         var vCommentId = $(this).data("commentid");
         var vReplyAreaId = "replyDetailByComment" + vCommentId;
@@ -363,7 +367,7 @@ $(document).ready(function () {
         createReplyByCommentId(vCommentId, vReplyDetail);
     })
 
-    //call create reply API
+    //goi api tao phan hoi 
     function createReplyByCommentId(pCommentId, pReplyDetail) {
         var vToday = new Date().format("d-m-Y");
         var vReplyName = $("#userInfo").text();
@@ -390,9 +394,7 @@ $(document).ready(function () {
         })
     }
 
-    /*
-    =================Validate user role by token=================
-    */
+    //xac nguoi quyen nguoi dung qua token
     function makeHeaderAuthFromCookie() {
         var vToken = getCookie("token");
 
@@ -403,7 +405,7 @@ $(document).ready(function () {
         return vHeaders;
     }
 
-    //get cookie from local
+    //nhan cookie
     function getCookie(cname) {
         var name = cname + "=";
         var decodedCookie = decodeURIComponent(document.cookie);
@@ -420,7 +422,7 @@ $(document).ready(function () {
         return "";
     }
 
-    //Authentication User Role
+    //Vai tro nguoi dung xac thuc
     function getUserRole() {
         var urlInfo = "http://localhost:8080/auth/user/me";
         var vHeader = makeHeaderAuthFromCookie();
@@ -446,7 +448,7 @@ $(document).ready(function () {
         gUserRole = pUserRole;
     }
 
-    //show content by role
+    //hiển thị nội dung theo vai trò
     function showContentByRole() {
         console.log("user role: " + gUserRole);
         if (gUserRole == "ROLE_CUSTOMER" || gUserRole == "") {
@@ -457,7 +459,5 @@ $(document).ready(function () {
         }
     }
 
-    /*
-    =================End of Validate user role by token=================
-    */
+   
 })
